@@ -32,6 +32,10 @@ public class FieldTest {
         //mainPage.clickToEnterButton();
         loginPage.inputUsername("Example");
         loginPage.inputPassword("Example");
+        String username = loginPage.getUsername();
+        String password = loginPage.getPassword();
+        Assert.assertEquals("Example",username);
+        Assert.assertEquals("Example",password);
     }
 
     @AfterClass

@@ -28,4 +28,12 @@ public class LoginPage {
     public void inputPassword(String text) {
         passwordField.sendKeys(text);
     }
+
+    public String getUsername(){
+        return userField.getAttribute("value");
+    }
+
+    public String getPassword(){
+       return passwordField.getAttribute("value");
+    }
 }
