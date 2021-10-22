@@ -21,7 +21,6 @@ public class DropListTest {
         driver.get("https://www.bspb.ru/");
     }
 
-    @Ignore
     @Test
     public void dropListTest() {
         mainPage.clickToCreditButton();

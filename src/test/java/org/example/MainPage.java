@@ -42,7 +42,7 @@ public class MainPage {
     @FindBy(xpath = "//*[contains(@href, '/retail')]")
     private WebElement headerButtonRetail;
 
-    @FindBy(xpath = "//*[contains(@data-hover, 'dropdown')]")
+    @FindBy(xpath = "//*[contains(@data-hover, 'dropdown')]/span[text() = 'Кредиты']")
     private WebElement creditDropList;
 
     @FindBy(xpath = "//*[contains(@class, 'bspb blue button')]")
@@ -78,7 +78,9 @@ public class MainPage {
 
     public void clickToCreditButton() {
         Actions action = new Actions(driver);
-        action.moveToElement(creditDropList).moveToElement(driver.findElement(By.xpath("//*[@id=\"menubar\"]/div[2]/ul/li[1]/div/div/div[1]/div[1]/a"))).click().build().perform();
+        action.moveToElement(creditDropList).perform();
+        sleep(4);
+        action.moveToElement(driver.findElement(By.xpath("//*[contains(@class, 'dropdown-panel')]//*[@href = '/retail/consumer-loan/']"))).click().build().perform();
     }
 
     public void clickToEnterButton() {

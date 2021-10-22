@@ -15,8 +15,7 @@ public class BluButtonPage {
 
     @FindBy (xpath = "//*[@href='/retail/cards/']")
     private WebElement tnAtomText;
-
-    @FindBy(xpath = "//*[@id=\"content\"]/div[2]/div[6]/div[5]")
+    @FindBy(xpath = "//*[contains(@class, 'switcher')]//div[5]")
     private WebElement smallbutton;
     public String getAtomText(){
         return tnAtomText.getText();
