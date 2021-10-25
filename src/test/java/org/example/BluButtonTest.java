@@ -14,7 +14,7 @@ public class BluButtonTest {
     public static MainPage mainPage;
     public static BluButtonPage bluButtonPage;
     private static ChromeDriver driver;
-    String realAtomText = "Безопасность";
+    final static String REAL_ATOM_TEXT = "Безопасность";
 
 
     @BeforeClass
@@ -36,7 +36,7 @@ public class BluButtonTest {
         bluButtonPage.clickToSmallButton();
         bluButtonPage.clickToBluBatton();
         String textAtom = bluButtonPage.getAtomText();
-        Assert.assertEquals(realAtomText, textAtom);
+        Assert.assertEquals(REAL_ATOM_TEXT, textAtom);
     }
     /**
      * осуществление выхода из аккаунта с последующим закрытием окна браузера

@@ -6,25 +6,26 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 public class DropListTest {
     public static MainPage mainPage;
+    public static CreditPage creditPage;
     private static ChromeDriver driver;
+    final static String creditPageHeader = "Потребительские кредиты";
 
     @BeforeClass
     public static void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         mainPage = new MainPage(driver);
-        //окно разворачивается на полный экран
+        creditPage = new CreditPage(driver);
         driver.manage().window().maximize();
-        //задержка на выполнение теста = 10 сек.
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //получение ссылки на страницу входа из файла настроек
         driver.get("https://www.bspb.ru/");
     }
 
     @Test
     public void dropListTest() {
         mainPage.clickToCreditButton();
-        //Assert.assertEquals(realAtomText, textAtom);
+        String creditPageText = creditPage.getCreditPageText();
+        Assert.assertEquals(creditPageText, creditPageHeader);
     }
 
     @AfterClass

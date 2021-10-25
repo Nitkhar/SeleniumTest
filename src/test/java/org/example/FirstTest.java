@@ -1,6 +1,6 @@
 package org.example;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.*;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -9,13 +9,13 @@ public class FirstTest {
     /**
      * Переменные для проверки
     */
-    String headerNameSmokeTestFirst = "ЧАСТНЫМ КЛИЕНТАМ";
-    String headerNameSmokeTestSecond = "БИЗНЕСУ";
-    String headerNameSmokeTestThird = "УЧАСТНИКАМ ВЭД";
-    String headerNameSmokeTestFourth = "ФИНАНСОВЫЕ РЫНКИ";
-    String headerNameSmokeTestFifth = "PRIVATE BANKING";
-    String headerNameSmokeTestSix = "ИНВЕСТОРАМ";
-    String headerNameSmokeTestLast = "ЧАСТНЫМ КЛИЕНТАМ";
+    final static String HEADER_NAME_SMOKE_TEST_FIRST = "ЧАСТНЫМ КЛИЕНТАМ";
+    final static String HEADER_NAME_SMOKE_TEST_SECOND = "БИЗНЕС";
+    final static String HEADER_NAME_SMOKE_TEST_THIRD = "УЧАСТНИКАМ ВЭД";
+    final static String HEADER_NAME_SMOKE_TEST_FOURTH = "ФИНАНСОВЫЕ РЫНКИ";
+    final static String HEADER_NAME_SMOKE_TEST_FIFTH = "PRIVATE BANKING";
+    final static String HEADER_NAME_SMOKE_TEST_SIX = "ИНВЕСТОРАМ";
+    final static String HEADER_NAME_SMOKE_TEST_LAST = "ЧАСТНЫМ КЛИЕНТАМ";
 
     public static MainPage mainPage;
     private static ChromeDriver driver;
@@ -40,32 +40,40 @@ public class FirstTest {
      */
     @Test
     public void smokeTest() {
+        SoftAssertions softAssertions = new SoftAssertions();
         String currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestFirst, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_FIRST).isEqualTo(currentHeaderName);
 
         mainPage.clickToBusinessButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestSecond, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_SECOND, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_SECOND).isEqualTo(currentHeaderName);
 
         mainPage.clickToForeignTradeButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestThird, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_THIRD, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_THIRD).isEqualTo(currentHeaderName);
 
         mainPage.clickToFinanceButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestFourth, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_FOURTH, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_FOURTH).isEqualTo(currentHeaderName);
 
         mainPage.clickToVipButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestFifth, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_FIFTH, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_FIFTH).isEqualTo(currentHeaderName);
 
         mainPage.clickToInvestorsButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestSix, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_SIX, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_SIX).isEqualTo(currentHeaderName);
 
         mainPage.clickToRetailButton();
         currentHeaderName = mainPage.getHeaderName();
-        Assert.assertEquals(headerNameSmokeTestLast, currentHeaderName);
+        //asert.assertEquals(HEADER_NAME_SMOKE_TEST_LAST, currentHeaderName);
+        softAssertions.assertThat(HEADER_NAME_SMOKE_TEST_LAST).isEqualTo(currentHeaderName);
+        softAssertions.assertAll();
     }
 
     /**
