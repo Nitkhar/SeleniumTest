@@ -9,8 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 
-public class MainPage {
+public class MainPage extends Page {
 
     public WebDriver driver;
     public MainPage(WebDriver driver) {
@@ -47,6 +48,22 @@ public class MainPage {
 
     @FindBy(xpath = "//*[contains(@class, 'bspb blue button')]")
     private WebElement enterButton;
+
+    @Override
+    public boolean checkTheHeader(String header) {
+        /**Сделать реализацию */
+        return false;
+    }
+
+    @Override
+    public void fillFields(Map<String, String> fields) {
+        System.out.println("Полей не имеет");
+    }
+
+    @Override
+    public void checkFields(Map<String, String> fields) {
+        System.out.println("Полей не имеет");
+    }
 
     public void clickToBusinessButton() {
         headerButtonBusiness.click();

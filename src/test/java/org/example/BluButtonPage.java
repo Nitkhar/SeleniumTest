@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class BluButtonPage {
+import java.util.Map;
+
+public class BluButtonPage extends Page {
     public WebDriver driver;
     public BluButtonPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -17,6 +19,22 @@ public class BluButtonPage {
     private WebElement tnAtomText;
     @FindBy(xpath = "//*[contains(@class, 'switcher')]//div[5]")
     private WebElement smallbutton;
+
+    @Override
+    public boolean checkTheHeader(String header) {
+        return false;
+    }
+
+    @Override
+    public void checkFields(Map<String, String> fields) {
+        /** !!!*/
+    }
+
+    @Override
+    public void fillFields(Map<String, String> fields) {
+        /** !!!*/
+    }
+
     public String getAtomText(){
         return tnAtomText.getText();
     }

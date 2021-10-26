@@ -6,6 +6,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -13,9 +14,11 @@ public class MyStepdefs {
     public static MainPage mainPage;
     public static LoginPage loginPage;
     public static BluButtonPage bluButtonPage;
+    public static CardPage cardPage;
     private static ChromeDriver driver;
     private static SoftAssertions softAssertions = new SoftAssertions();
     final static String REAL_ATOM_TEXT = "Безопасность";
+    public static Page currentPage;
 
 
     @Когда("пользователь заходит на страницу входа в Банк Санкт-Петербург")
@@ -120,5 +123,31 @@ public class MyStepdefs {
     @Затем("переходит на страницу Частным клиентам")
     public void переходитНаСтраницуЧастнымКлиентам() {
         mainPage.clickToRetailButton();
+    }
+
+    @И("пользователь вводит текст {string} в текстовое поле {string}")
+    public void пользовательВводитТекстВТекстовоеПоле(String text, String fieldsName) {
+
+    }
+
+    @Дано("пользователь заходит на страницу заказа карты")
+    public void пользовательЗаходитНаСтраницуЗаказаКарты() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        cardPage = new CardPage(driver);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        currentPage = cardPage;
+        driver.get("https://www.bspb.ru/retail/cards/form/?cardApplication.cardType=Cards_Pers_Premium_MCWorld&bspb_param=analytics-btn");
+    }
+
+    @Когда("пользователь заполняет поля данными:")
+    public void пользовательЗаполняетПоляДанными(Map<String, String> fields) {
+        currentPage.fillFields(fields);
+    }
+
+    @Затем("пользователь проверяет что данные в полях соответствуют требуемым:")
+    public void пользовательПроверяетЧтоДанныеВПоляхСоответствуютТребуемым(Map<String, String> fields) {
+        currentPage.checkFields(fields);
     }
 }

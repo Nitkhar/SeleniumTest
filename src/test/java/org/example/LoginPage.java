@@ -9,7 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.swing.*;
 import java.awt.*;
-public class LoginPage {
+import java.util.Map;
+
+public class LoginPage extends Page {
     public WebDriver driver;
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -20,6 +22,23 @@ public class LoginPage {
 
     @FindBy(xpath = "//*[@id=\"login-form\"]/div[2]/input")
     private WebElement passwordField;
+
+    @Override
+    public boolean checkTheHeader(String header) {
+        /** сделать реализацию */
+        return false;
+    }
+
+    @Override
+    public void fillFields(Map<String, String> fields) {
+        userField.sendKeys(fields.get("Логин"));
+        passwordField.sendKeys(fields.get("Пароль"));
+    }
+
+    @Override
+    public void checkFields(Map<String, String> fields) {
+        /** сделать реализацию*/
+    }
 
     public void inputUsername(String text) {
         userField.sendKeys(text);

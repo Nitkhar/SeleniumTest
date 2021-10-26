@@ -5,7 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CreditPage {
+import java.util.Map;
+
+public class CreditPage extends Page {
     public WebDriver driver;
 
     public CreditPage(WebDriver driver) {
@@ -15,6 +17,21 @@ public class CreditPage {
 
     @FindBy(xpath = "//*[contains(@class, 'subheader-container')]/h1")
     private WebElement creditPageText;
+
+    @Override
+    public boolean checkTheHeader(String header) {
+        return false;
+    }
+
+    @Override
+    public void checkFields(Map<String, String> fields) {
+        /** !!!*/
+    }
+
+    @Override
+    public void fillFields(Map<String, String> fields) {
+        /** !!!*/
+    }
 
     public String getCreditPageText(){
         String text = creditPageText.getText();
